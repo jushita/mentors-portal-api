@@ -16,21 +16,7 @@ import { AuthRoutes } from './routes/auth.routes';
 import { ColorSupport } from 'chalk';
 // ENDIMPORTS //
 
-// Initialize logger
-const LOGGER = Logger.getLogger();
-Logger.configure({
-    appenders: {
-        out: {
-            type: 'stdout'
-        }
-    },
-    categories: {
-        default: {
-            appenders: ['out'],
-            level: process.env.LOG_LEVEL || 'debug'
-        }
-    }
-});
+
 
 // Set a new morgan token
 morgan.token('id', (req: Request, res: Response) => {

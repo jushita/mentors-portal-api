@@ -8,11 +8,9 @@ export function connect(cb: any) {
     LOGGER.info(`Host: localhost`);
     createConnection({
         type: 'postgres',
-        host: 'localhost',
         port: 5432,
         username: 'postgres',
-        password: process.env.POSTGRES_PASSWORD,
-        database: 'mentorsportalapi',
+        password: 'amrashobairaja',
         entities: [],
         synchronize: true,
         logging: false
@@ -21,6 +19,8 @@ export function connect(cb: any) {
             // here you can start to work with your entities
             LOGGER.info('Connected to database');
             cb();
+
+
         })
         .catch(error => {
             LOGGER.error(error);

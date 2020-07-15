@@ -14,6 +14,7 @@ const context = require('express-cls-hooked');
 // STARTIMPORTS //
 import { AuthRoutes } from './routes/auth.routes';
 import { ColorSupport } from 'chalk';
+import { MentorRoutes } from './routes/mentor.routes';
 // ENDIMPORTS //
 
 
@@ -51,6 +52,8 @@ app.get('/', (req: Request, res: Response) => {
 });
 // STARTROUTES //
 app.use(AuthRoutes.routes());
+app.use('/mentor', MentorRoutes.routes())
+
 // ENDROUTES //
 
 // Export the app (this makes setting up testing easier)

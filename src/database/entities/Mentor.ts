@@ -1,13 +1,15 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
 
-@Entity("MENTOR") 
+@Entity()
 export class Mentor {
-    @PrimaryGeneratedColumn({name: 'ID'})
+
+    @PrimaryGeneratedColumn()
     id: number;
 
-    @Column("varchar", {name: "NAME", length: 256 })
-    name: string;
+    @Column()
+    firstName: string;
 
-    @Column("varchar", { name: "PASSWORD", length: 256})
-    password: string;
+    @Column()
+    lastName: string;
+
 }

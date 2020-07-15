@@ -3,6 +3,7 @@ import { Response } from 'express';
 import { Logger } from "../services/logger";
 import { Router, Request } from "../typings";
 import { Mentor } from '../models/mentor';
+import { MentorService } from '../services/mentor.service';
 
 const LOGGER = Logger.getLogger('MentorRoutes');
 
@@ -15,9 +16,11 @@ export class MentorRoutes {
     }
 
     private readonly router: Router;
+    public mentorService: MentorService;
 
     private constructor(router: Router) {
         this.router = router;
+        this.mentorService = new MentorService();
     }
 
 
@@ -26,21 +29,31 @@ export class MentorRoutes {
     }
 
     private bootstrap(): void {
-        this.router.get('/', (req: Request, res: Response) => {
+        this.router.get('/', async (req: Request, res: Response) => {
+            let result;
             try {
-
+                result = await this.mentorService.getAll();
             } catch(e) {
-
+                LOGGER.error(e);
             }
 
-            res.status(200).json();
+            res.status(200).json(result);
         });
 
-        this.router.post('/', (req: Request, res: Response) => {
-            let name: string = req.body.name;
-            let newMentor = new Mentor(name);
+        this.router.post('/', async (req: Request, res: Response) => {
+            let firstName: string = req.body.firstName;
+            let lastName: string = req.body.lastName;
+            let newMentor = new Mentor(firstName, lastName);
+            try {
+                await this.mentorService.create(newMentor);
+            } catch(e) {
+                LOGGER.error(e);
+                throw e;
+            }
+
+            res.status(200).json('Successfully posted');
 
             // call service 
-        })
+        });
     }
 }

@@ -1,9 +1,10 @@
 export class Mentor {
-    public id?: string;
-    public name: string;
-    public password?: string; 
-    constructor(name: string) {
-        this.name = name;
+    public id?: number;
+    public firstName: string;
+    public lastName: string; 
+    constructor(firstName: string, lastName: string) {
+        this.firstName = firstName;
+        this.lastName = lastName;
     }
 
 

@@ -40,6 +40,18 @@ export class MentorRoutes {
             res.status(200).json(result);
         });
 
+        this.router.get('/:id', async (req: Request, res: Response) => {
+            let result;
+            let id = req.params.id;
+            try {
+                result = await this.mentorService.getOne(parseInt(id));
+            } catch(e) {
+                LOGGER.error(e);
+            }
+
+            res.status(200).json(result);
+        });
+
         this.router.post('/', async (req: Request, res: Response) => {
             let firstName: string = req.body.firstName;
             let lastName: string = req.body.lastName;
@@ -55,5 +67,19 @@ export class MentorRoutes {
 
             // call service 
         });
+
+        this.router.delete('/:id', async (req: Request, res: Response) => {
+            let id: any = req.params.id;
+            console.log(id);
+            id = parseInt(id);
+            console.log(typeof(id));
+
+            try {
+                await this.mentorService.delete(id);
+            } catch(e) {
+                LOGGER.error(e);
+            }
+            res.status(200).json(`Successfully deleted id: ${id}`)
+        })
     }
 }

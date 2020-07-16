@@ -25,4 +25,28 @@ export class MentorService {
         console.log(result)
         return result;
     }
+
+    public async getOne(id: number) {
+        let result;
+        try {
+            result = await this.mentorRepository.findOne(id);
+        } catch (e) {
+            throw e;
+        }
+        console.log(result)
+        return result;
+    }
+
+    public async delete(id: number) {
+        let mentor = await this.getOne(id);
+        console.log(mentor)
+        try {
+            await this.mentorRepository.remove(mentor);
+        } catch (e) {
+            throw e;
+        }
+        
+    }
+
+
 }

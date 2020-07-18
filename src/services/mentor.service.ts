@@ -14,7 +14,6 @@ export class MentorService {
         }
     }
 
-
     public async getAll() {
         let result;
         try {
@@ -22,7 +21,6 @@ export class MentorService {
         } catch (e) {
             throw e;
         }
-        console.log(result)
         return result;
     }
 
@@ -33,13 +31,11 @@ export class MentorService {
         } catch (e) {
             throw e;
         }
-        console.log(result)
         return result;
     }
 
     public async delete(id: number) {
         let mentor = await this.getOne(id);
-        console.log(mentor)
         try {
             await this.mentorRepository.remove(mentor);
         } catch (e) {

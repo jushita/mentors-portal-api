@@ -1,6 +1,7 @@
 import { createConnection, getConnection } from 'typeorm';
 import { Logger } from '../services/logger';
 import { Mentor } from './entities/Mentor';
+import { Mentee } from './entities/Mentee';
 
 const LOGGER = Logger.getLogger('Database');
 
@@ -12,7 +13,7 @@ export function connect(cb: any) {
         port: 5432,
         username: 'postgres',
         password: 'amrashobairaja',
-        entities: [Mentor],
+        entities: [Mentor, Mentee],
         synchronize: true,
         logging: false
     })
@@ -32,4 +33,8 @@ export function connect(cb: any) {
 
 export function getMentorRepository() {
     return getConnection().manager.getRepository(Mentor);
+}
+
+export function getMenteeRepository() {
+    return getConnection().manager.getRepository(Mentee)
 }

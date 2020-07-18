@@ -53,9 +53,8 @@ export class MentorRoutes {
         });
 
         this.router.post('/', async (req: Request, res: Response) => {
-            let firstName: string = req.body.firstName;
-            let lastName: string = req.body.lastName;
-            let newMentor = new Mentor(firstName, lastName);
+            let name: string = req.body.name;
+            let newMentor = new Mentor(name);
             try {
                 await this.mentorService.create(newMentor);
             } catch(e) {
@@ -80,6 +79,6 @@ export class MentorRoutes {
                 LOGGER.error(e);
             }
             res.status(200).json(`Successfully deleted id: ${id}`)
-        })
+        });
     }
 }

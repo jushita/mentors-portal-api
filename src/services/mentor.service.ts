@@ -40,9 +40,6 @@ export class MentorService {
             await this.mentorRepository.remove(mentor);
         } catch (e) {
             throw e;
-        }
-        
+        }   
     }
-
-
 }

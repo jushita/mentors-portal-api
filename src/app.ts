@@ -5,7 +5,6 @@ import * as morgan from 'morgan';
 import * as cors from "cors";
 import { requestLogger } from './middleware/request-logger.middleware';
 import { generateRequestId } from './middleware/uuid.middleware';
-import { Logger } from './services/logger';
 import { Request } from './typings';
 import { environment } from './environment'
 const context = require('express-cls-hooked');
@@ -13,12 +12,10 @@ const context = require('express-cls-hooked');
 
 // STARTIMPORTS //
 import { AuthRoutes } from './routes/auth.routes';
-import { ColorSupport } from 'chalk';
 import { MentorRoutes } from './routes/mentor.routes';
 import { MenteeRoutes } from './routes/mentee.routes';
 import { MessageRoutes } from './routes/message.routes';
 // ENDIMPORTS //
-
 
 
 // Set a new morgan token

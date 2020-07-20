@@ -6,7 +6,6 @@ import { FindManyOptions } from 'typeorm';
 export class MessageService {
     public messageRepository = getMessageRepository();
     constructor() {
-
     }
 
     public async create(newMessage: Message) {
@@ -43,8 +42,7 @@ export class MessageService {
             await this.messageRepository.remove(message);
         } catch (e) {
             throw e;
-        }
-        
+        }        
     }
 
     public async getAllMessage(mentee: Mentee) {
@@ -55,7 +53,5 @@ export class MessageService {
         } catch(e) {
             throw e;
         }
-
     }
-
 }

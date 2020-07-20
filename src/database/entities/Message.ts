@@ -4,7 +4,7 @@ import { Mentee } from "./Mentee";
 @Entity()
 export class Message {
 
-    @PrimaryGeneratedColumn()
+    @PrimaryGeneratedColumn("uuid")
     id: number;
 
     @Column()

@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, ManyToOne} from "typeorm";
+import { Mentee } from "./Mentee";
 
 @Entity()
 export class Message {
@@ -7,6 +8,16 @@ export class Message {
     id: number;
 
     @Column()
-    name: string;
+    type: string;
 
+    @Column()
+    date: Date
+
+    @Column()
+    message: string
+
+    @ManyToOne(type => Mentee)
+    @JoinColumn({name: 'menteeId'})
+    mentee: Mentee;
 }
+

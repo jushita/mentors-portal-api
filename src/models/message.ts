@@ -1,16 +1,16 @@
+import { Mentee } from "./mentee";
+
 export class Message {
     public id: number;
-    public menteeId: number;
     public type: string;
     public date: Date;
     public message: string;
+    public mentee: Mentee
 
-    constructor(id: number, menteeId: number, 
-        type: string, date: Date, message: string) {
-            this.id = id;
-            this.menteeId = menteeId;
+    constructor(type: string, date: Date, message: string, mentee: Mentee) {
             this.type = type;
             this.date = date;
             this.message = message;
+            this.mentee = mentee;
     }
 }

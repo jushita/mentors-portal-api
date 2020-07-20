@@ -1,4 +1,5 @@
-import {Entity, PrimaryGeneratedColumn, Column} from "typeorm";
+import {Entity, PrimaryGeneratedColumn, Column, OneToOne, JoinColumn, OneToMany} from "typeorm";
+import { Message } from "./Message";
 
 @Entity()
 export class Mentee {
@@ -17,5 +18,9 @@ export class Mentee {
 
     @Column()
     marketLaunchDate: Date;
+
+    @OneToMany(type => Message, message => message.mentee)
+    @JoinColumn()
+    messages: Message[]
 
 }

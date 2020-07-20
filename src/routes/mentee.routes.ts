@@ -1,38 +1,37 @@
 import * as express from 'express';
-import { Response } from 'express';
 import { Logger } from "../services/logger";
+import { Response } from "express";
 import { Router, Request } from "../typings";
-import { Mentor } from '../models/mentor';
-import { MentorService } from '../services/mentor.service';
+import { MenteeService } from "../services/mentee.service";
+import { Mentee } from '../models/mentee';
 
-const LOGGER = Logger.getLogger('MentorRoutes');
+const LOGGER = Logger.getLogger('MenteeRoutes');
 
-export class MentorRoutes {
+export class MenteeRoutes {
     public static routes(): Router {
-        LOGGER.info('Setting up mentor routes');
-        let routes: MentorRoutes = new this(express.Router());
+        LOGGER.info('Setting up mentee routes');
+        let routes: MenteeRoutes = new this(express.Router());
         routes.bootstrap();
         return routes.getRouter();
     }
 
     private readonly router: Router;
-    public mentorService: MentorService;
+    public menteeService: MenteeService;
 
     private constructor(router: Router) {
         this.router = router;
-        this.mentorService = new MentorService();
+        this.menteeService = new MenteeService();
     }
 
-
     public getRouter(): Router {
-        return this.router;
+        return this.router; 
     }
 
     private bootstrap(): void {
         this.router.get('/', async (req: Request, res: Response) => {
             let result;
             try {
-                result = await this.mentorService.getAll();
+                result = await this.menteeService.getAll();
             } catch(e) {
                 LOGGER.error(e);
             }
@@ -44,7 +43,7 @@ export class MentorRoutes {
             let result;
             let id = req.params.id;
             try {
-                result = await this.mentorService.getOne(parseInt(id));
+                result = await this.menteeService.getOne(parseInt(id));
             } catch(e) {
                 LOGGER.error(e);
             }
@@ -54,9 +53,14 @@ export class MentorRoutes {
 
         this.router.post('/', async (req: Request, res: Response) => {
             let name: string = req.body.name;
-            let newMentor = new Mentor(name);
+            let status: string = req.body.status;
+            let joiningDate: Date = req.body.joiningDate;
+            let marketLaunchDate: Date = req.body.marketLaunchDate;
+
+            let newMentor = new Mentee(name, status, joiningDate, marketLaunchDate);
+            
             try {
-                await this.mentorService.create(newMentor);
+                await this.menteeService.create(newMentor);
             } catch(e) {
                 LOGGER.error(e);
                 throw e;
@@ -69,16 +73,16 @@ export class MentorRoutes {
 
         this.router.delete('/:id', async (req: Request, res: Response) => {
             let id: any = req.params.id;
-            console.log(id);
             id = parseInt(id);
-            console.log(typeof(id));
 
             try {
-                await this.mentorService.delete(id);
+                await this.menteeService.delete(id);
             } catch(e) {
                 LOGGER.error(e);
             }
             res.status(200).json(`Successfully deleted id: ${id}`)
         });
+
+
     }
 }

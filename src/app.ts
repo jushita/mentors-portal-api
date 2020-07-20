@@ -15,6 +15,8 @@ const context = require('express-cls-hooked');
 import { AuthRoutes } from './routes/auth.routes';
 import { ColorSupport } from 'chalk';
 import { MentorRoutes } from './routes/mentor.routes';
+import { MenteeRoutes } from './routes/mentee.routes';
+import { MessageRoutes } from './routes/message.routes';
 // ENDIMPORTS //
 
 
@@ -52,7 +54,9 @@ app.get('/', (req: Request, res: Response) => {
 });
 // STARTROUTES //
 app.use(AuthRoutes.routes());
-app.use('/mentor', MentorRoutes.routes())
+app.use('/mentor', MentorRoutes.routes());
+app.use('/mentee', MenteeRoutes.routes());
+app.use('/message', MessageRoutes.routes());
 
 // ENDROUTES //
 

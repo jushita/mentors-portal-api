@@ -69,10 +69,6 @@ export class MentorRoutes {
 
         this.router.delete('/:id', async (req: Request, res: Response) => {
             let id: any = req.params.id;
-            console.log(id);
-            id = parseInt(id);
-            console.log(typeof(id));
-
             try {
                 await this.mentorService.delete(id);
             } catch(e) {

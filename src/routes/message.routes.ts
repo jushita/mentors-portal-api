@@ -38,17 +38,14 @@ export class MessageRoutes {
             if (req.query.menteeId) {
 
                 try {
-                    console.log(`hereeeee`)
                     mentee = await this.menteeService.getOne(req.query.menteeId as string);
-                    console.log(mentee)
                     options.mentee = mentee;
                 } catch(e) {
                     LOGGER.error(e);
                 }
             }
-            let result;
+            let result: Message[];
             try {
-                console.log(options)
                 result = await this.messageService.getAll(options);
             } catch(e) {
                 LOGGER.error(e);

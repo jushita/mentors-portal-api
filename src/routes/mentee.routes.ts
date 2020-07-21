@@ -72,7 +72,7 @@ export class MenteeRoutes {
         });
 
         this.router.delete('/:id', async (req: Request, res: Response) => {
-            let id: string = req.params.id;
+            let id = req.params.id;
             try {
                 await this.menteeService.delete(id);
             } catch(e) {

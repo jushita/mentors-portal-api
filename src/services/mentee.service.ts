@@ -36,8 +36,8 @@ export class MenteeService {
     }
 
     public async delete(id: string) {
-        let mentee = await this.getOne(id);
         try {
+            let mentee = await this.getOne(id);
             await this.menteeRepository.remove(mentee);
         } catch (e) {
             throw e;

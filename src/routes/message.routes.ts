@@ -39,7 +39,7 @@ export class MessageRoutes {
 
                 try {
                     console.log(`hereeeee`)
-                    mentee = await this.menteeService.getOne((req.query.menteeId as string));
+                    mentee = await this.menteeService.getOne(req.query.menteeId as string);
                     console.log(mentee)
                     options.mentee = mentee;
                 } catch(e) {
@@ -89,7 +89,6 @@ export class MessageRoutes {
 
         this.router.delete('/:id', async (req: Request, res: Response) => {
             let id: any = req.params.id;
-            id = parseInt(id);
             try {
                 await this.messageService.delete(id);
             } catch(e) {

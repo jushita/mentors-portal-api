@@ -43,7 +43,7 @@ export class MenteeRoutes {
             let result;
             let id = req.params.id;
             try {
-                result = await this.menteeService.getOne(parseInt(id));
+                result = await this.menteeService.getOne(id);
             } catch(e) {
                 LOGGER.error(e);
             }
@@ -72,9 +72,7 @@ export class MenteeRoutes {
         });
 
         this.router.delete('/:id', async (req: Request, res: Response) => {
-            let id: any = req.params.id;
-            id = parseInt(id);
-
+            let id: string = req.params.id;
             try {
                 await this.menteeService.delete(id);
             } catch(e) {

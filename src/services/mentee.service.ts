@@ -25,7 +25,7 @@ export class MenteeService {
         }
     }
 
-    public async getOne(id: number) {
+    public async getOne(id: string) {
         let result;
         try {
             result = await this.menteeRepository.findOne(id);
@@ -35,7 +35,7 @@ export class MenteeService {
         }
     }
 
-    public async delete(id: number) {
+    public async delete(id: string) {
         let mentee = await this.getOne(id);
         try {
             await this.menteeRepository.remove(mentee);

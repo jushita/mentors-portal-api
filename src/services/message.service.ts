@@ -48,7 +48,7 @@ export class MessageService {
     public async getAllMessage(mentee: Mentee) {
         let messages;
         try {
-            messages = await this.messageRepository.find({mentee});
+            messages = await this.messageRepository.findOne({mentee});
             return messages;
         } catch(e) {
             throw e;

@@ -34,12 +34,21 @@ export class MessageRoutes {
     private bootstrap(): void {
         this.router.get('/', async (req: Request, res: Response) => {
             let options: any = {};
+            let mentee: Mentee;
             if (req.query.menteeId) {
-                let mentee = await this.menteeService.getOne(parseInt(req.query.menteeId as string));
-                options.mentee = mentee;
+
+                try {
+                    console.log(`hereeeee`)
+                    mentee = await this.menteeService.getOne((req.query.menteeId as string));
+                    console.log(mentee)
+                    options.mentee = mentee;
+                } catch(e) {
+                    LOGGER.error(e);
+                }
             }
             let result;
             try {
+                console.log(options)
                 result = await this.messageService.getAll(options);
             } catch(e) {
                 LOGGER.error(e);
@@ -75,7 +84,6 @@ export class MessageRoutes {
             }
 
             res.status(200).json('Successfully posted');
-
             // call service 
         });
 

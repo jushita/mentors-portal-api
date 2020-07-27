@@ -29,7 +29,7 @@ const app = wss.app;
 
 
 const options: cors.CorsOptions = {
-    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "x-auth-token", "fileName"],
+    allowedHeaders: ["Origin", "X-Requested-With", "Content-Type", "Accept", "x-auth-token", "fileName", "x-api-token"],
     exposedHeaders: ["fileName"],
     methods: "GET,HEAD,OPTIONS,PUT,PATCH,POST,DELETE",
     origin: environment.env.origin,

@@ -15,6 +15,7 @@ import { AuthRoutes } from './routes/auth.routes';
 import { MentorRoutes } from './routes/mentor.routes';
 import { MenteeRoutes } from './routes/mentee.routes';
 import { MessageRoutes } from './routes/message.routes';
+import { LoginRoutes } from './routes/login.routes';
 // ENDIMPORTS //
 
 
@@ -54,6 +55,7 @@ app.use(AuthRoutes.routes());
 app.use('/mentor', MentorRoutes.routes());
 app.use('/mentee', MenteeRoutes.routes());
 app.use('/message', MessageRoutes.routes());
+app.use('', LoginRoutes.routes())
 
 // ENDROUTES //
 

@@ -3,8 +3,11 @@ import { Response } from 'express';
 import { Logger } from '../services/logger';
 import { JWTService } from '../services/jwt.service';
 import { Request, Router } from '../typings';
+import { environment } from '../environment'
 
 const LOGGER = Logger.getLogger('AuthRoutes');
+const authMicrosericeURL = environment.authMicrosericeURL.origin
+
 
 export class AuthRoutes {
     public static routes(): Router {
@@ -27,18 +30,30 @@ export class AuthRoutes {
     private bootstrap(): void {
         // TODO: Update with custom login functionality
         this.router.post('/login', (req: Request, res: Response) => {
-            const username = req.body.username;
-            const password = req.body.password;
+            let token;
+            try {
+                this.router.get(authMicrosericeURL+ '/', async(req: Request, res: Response) => {
+                    const name = req.body.name;
+                    const password = req.body.password;
+                    res.send({name: name, password: password});
 
+                });
+            } catch(e) {
+                LOGGER.error(e)
+            }
+            console.log('sending req')
+            res.status(200).json({ token });
+        });
+
+        this.router.post(authMicrosericeURL+ '/login', async(req: Request, res: Response) => {
+            const username = req.body.name;
+            const password = req.body.password;
             if (!username || username === '') {
                 return res.status(400).json({ message: 'InvalidRequest' });
             }
             if (!password || password === '') {
                 return res.status(400).json({ message: 'InvalidRequest' });
             }
-
-            const token = JWTService.generateToken({});
-            res.status(200).json({ token });
         });
     }
 }

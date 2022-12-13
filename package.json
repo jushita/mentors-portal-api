@@ -33,7 +33,7 @@
     "@types/cors": "^2.8.6",
     "chalk": "^2.4.1",
     "cors": "^2.8.5",
-    "express": "^4.16.3",
+    "express": "^4.17.3",
     "express-cls-hooked": "^0.3.8",
     "express-ws": "^4.0.0",
     "jsonwebtoken": "^8.3.0",

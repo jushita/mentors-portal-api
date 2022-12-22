@@ -36,7 +36,7 @@
     "express": "^4.16.3",
     "express-cls-hooked": "^0.3.8",
     "express-ws": "^4.0.0",
-    "jsonwebtoken": "^8.3.0",
+    "jsonwebtoken": "^9.0.0",
     "log4js": "^5.0.0",
     "morgan": "^1.9.0",
     "pg": "^8.3.0",
